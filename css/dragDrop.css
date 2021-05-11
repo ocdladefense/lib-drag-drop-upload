@@ -1,0 +1,66 @@
+.open-until-filled #closingDate {
+    display: none;
+}
+
+
+label {
+    color: rgba(30,30,30,0.7);
+    font-size: 14px;
+}
+
+.form-item {
+    margin-top: 27px;
+}
+
+.has-attachment #uploader {
+    display:none;
+}
+
+#existing-attachments{
+    display:none;
+}
+.has-attachment #existing-attachments{
+    
+    display:block;
+}
+
+button, input {
+    overflow: visible;
+    padding: 8px;
+    color: rgba(30,30,30,0.9);
+}	
+
+
+input[type="submit"],
+input[type="file"] {
+    display: block;
+    padding: 4px;
+}
+
+input[type=checkbox], input[type=radio] {
+        box-sizing: border-box;
+        padding: 0;
+        width: auto;
+}
+
+.upload {
+
+    display: none !important;
+}
+
+
+@media screen and (min-width:800px) {
+    .label {
+        display:none;
+    }
+    
+    .form-item {
+        max-width: 50%;
+    }
+}
+
+/* Drag And Drop Styles */
+.highlight {
+
+    background-color: lightgreen !important;
+}
