@@ -5,15 +5,15 @@ let uploadOnDrop = true;
 // Set the drop zone area
 let dropContainer = document.getElementsByTagName("body")[0];
 
-// Get the form from the document, and the submit button from the form.  This has to change.
+// Create and append the elements to the form.
 let form = document.getElementById("upload-form");
-let submitButton = document.getElementById("submit-button");
+let uploadContainer = appendUploadContainer();
+let fileInput = appendFileInput();
+let submitButton = appendSubmitButton();
+
 uploadOnDrop == true ? submitButton.classList.add("hidden") : submitButton.classList.remove("hidden");
 
-// If the file input element does not already exist, create the element and append it to the form element.
-let fileInput = document.getElementById('Attachments__c[]') != null ? document.getElementById('Attachments__c[]') : appendFileInput("rainbow.jpg");
-let fileInputContainer = document.getElementById("file-input-container");
-includeFileDialog == true ? fileInputContainer.classList.remove("hidden") : fileInputContainer.classList.add("hidden");
+includeFileDialog == true ? fileInput.classList.remove("hidden") : fileInput.classList.add("hidden");
 
 let primaryList = new DataTransfer();
 
@@ -105,6 +105,19 @@ function updateStatusContainer(container, filenames){
     container.appendChild(ul);
 }
 
+// Elements
+function appendUploadContainer(){
+
+    let container = document.createElement("div");
+    container.setAttribute("id", "file-input-container");
+    container.classList.add("file-upload-container");
+    container.setAttribute("style", "text-align:center;");
+
+    form.appendChild(container);  // Probably shouldnt append here.
+    
+    return container;
+}
+
 // Create a file input element and insert it into the form before the last element.  Usually a submit button I would think.
 // To do: This should just return the element.  The calling code shoud insert the element.
 function appendFileInput(filename){
@@ -116,21 +129,25 @@ function appendFileInput(filename){
     fileInput.setAttribute("multiple", "true");
     fileInput.classList.add("upload");
 
-    let container = document.createElement("div");
-    container.setAttribute("id", "file-input-container");
-    container.classList.add("file-upload-container");
-    container.setAttribute("style", "text-align:center;");
-    container.appendChild(fileInput);
-
-    let button = document.createElement("button");
-    button.innerHTML = "Select Image: " + filename;
-    button.setAttribute("style","border-radious: 5px; margin-bottom: 5px;");
-    container.appendChild(button);
-
-    form.insertBefore(container, form.children[form.children.length -6]);
+    uploadContainer.appendChild(fileInput);
 
     return fileInput;
 }
+
+
+function appendSubmitButton() {
+
+    let button = document.createElement("button");
+    button.setAttribute("type", "submit")
+    button.setAttribute("id", "submit-button");
+    button.innerText = "SUBMIT";
+    button.classList.add("upload-button");
+
+    form.appendChild(button);
+
+    return button;
+}
+
 
 // Create a status container element and insert it into the form before the second to last element.  Would hopefully be the file input element.
 // To do: This should just return the element.  The calling code shoud insert the element.
@@ -139,7 +156,7 @@ function appendStatusContainer(){
     let statusContainer = document.createElement("div");
     statusContainer.setAttribute("class", "form-item");
 
-    form.insertBefore(statusContainer, form.children[form.children.length -2]);
+    uploadContainer.prepend(statusContainer);
 
     return statusContainer;
 }
