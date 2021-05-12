@@ -30,9 +30,6 @@ class DragDropFileUpload {
         this.options.includeFileDialog ? this.fileInput.classList.remove("hidden") : this.fileInput.classList.add("hidden");
 
         this.primaryList = new DataTransfer();
-
-        console.log("hell0");
-        console.log(this.options);
     }
 
     // Create and append all of the needed upload elements to the form.
@@ -197,5 +194,10 @@ class DragDropFileUpload {
         this.uploadContainer.prepend(statusContainer);
 
         return statusContainer;
+    }
+
+    getOptions() {
+
+        return this.options;
     }
 }

@@ -1,0 +1,14 @@
+{
+    "name": "clickpdx/lib-drag-drop-upload",
+    "description": "A drag and drop file uploader.  Probably...no, is the best file uploader in the world.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Trevor Uehlin",
+            "email": "trevoruehlinx1@gmail.com"
+        }
+    ],
+    "require": {
+        "composer/installers":"~1.0"
+    }
+}
