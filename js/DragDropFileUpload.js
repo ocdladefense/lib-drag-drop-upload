@@ -4,6 +4,8 @@ class DragDropFileUpload {
 
     dropZone;
 
+    formContainer;
+
     form;
 
     uploadOnDrop;
@@ -19,57 +21,30 @@ class DragDropFileUpload {
         this.options = options;
 
         // Set the drop zone element
-        this.dropZone = document.querySelectorAll(this.options.dropZoneSelector)[0];
+        this.dropZone = document.querySelectorAll(this.options.get("dropZoneSelector"))[0];
+
+        this.formContainer = document.getElementById(this.options.get("formContainerId"));
 
         this.createUploadElements();
 
-        this.addEventListeners();
+        this.options.get("uploadOnDrop") ? this.submitButton.classList.add("hidden") : this.submitButton.classList.remove("hidden");
 
-        this.options.uploadOnDrop ? this.submitButton.classList.add("hidden") : this.submitButton.classList.remove("hidden");
-
-        this.options.includeFileDialog ? this.fileInput.classList.remove("hidden") : this.fileInput.classList.add("hidden");
+        this.options.get("includeFileDialog") ? this.fileInput.classList.remove("hidden") : this.fileInput.classList.add("hidden");
 
         this.primaryList = new DataTransfer();
+
+        this.addEventListeners();
     }
 
     // Create and append all of the needed upload elements to the form.
     createUploadElements() {
 
-        this.form = document.getElementById(this.options.formId) != null ? document.getElementById(this.options.formId) : appendFormElement()
-        this.uploadContainer = appendUploadContainer();
-        this.fileInput = appendFileInput();
-        this.submitButton = appendSubmitButton();
+        this.form = document.getElementById(this.options.get("formId")) != null ? document.getElementById(this.options.get("formId")) : this.appendFormElement();
+        this.uploadContainer = this.appendUploadContainer();
+        this.fileInput = this.appendFileInput();
+        this.submitButton = this.appendSubmitButton();
     }
 
-    // Add the event listeners
-    addEventListeners() {
-
-        this.dropContainer.ondragover = function(e) {
-
-            e.preventDefault();
-            this.dropContainer.classList.add("highlight");
-        };
-    
-        this.dropContainer.ondragleave = function(e) {
-    
-            e.preventDefault();
-            this.dropContainer.classList.remove("highlight");
-        };
-    
-        this.dropContainer.ondrop = function(e) {
-    
-            e.preventDefault();
-            this.dropContainer.classList.remove("highlight");
-            this.addFiles(e);
-        };
-    
-        this.fileInput.onchange = function(e) {
-    
-            e.preventDefault();	
-            this.addFiles(e);
-        }
-    }
-    
     // add the files to the data transfer, and update the interface.
     addFiles(e) {
 
@@ -77,13 +52,43 @@ class DragDropFileUpload {
 
         this.updateUserInterface();
 
-        if(this.uploadOnDrop) this.form.submit();
+        if(this.options.get("uploadOnDrop")) this.form.submit();
+    }
+
+    // Add the event listeners
+    addEventListeners() {
+
+        this.dropZone.ondragover = (e) => {
+
+            e.preventDefault();
+            e.target.classList.add("highlight");
+        };
+    
+        this.dropZone.ondragleave = (e) => {
+    
+            e.preventDefault();
+            e.target.classList.remove("highlight");
+        };
+    
+        this.dropZone.ondrop = (e) => {
+    
+            e.preventDefault();
+            e.target.classList.remove("highlight");
+            this.addFiles(e);
+        };
+    
+        this.fileInput.onchange = (e) => {
+    
+            e.preventDefault();	
+            this.addFiles(e);
+        };
     }
 
 
     updateDataTransfer(e){
 
         let files = e.type == "drop" ? e.dataTransfer.files : e.target.files;
+        console.log(e);
 
         for(let i = 0; i <= files.length -1; i++){
 
@@ -102,7 +107,7 @@ class DragDropFileUpload {
     }
 
 
-    // Return the file names of the files currently stored in the "Attachments__c" array of files in the "files" input element.
+    // Return the file names of the files currently stored in the "files" array of files in the "files" input element.
     getQueuedFileNames(){
 
         let queuedFileNames = new Array();
@@ -135,10 +140,13 @@ class DragDropFileUpload {
     appendFormElement(){
 
         let form = document.createElement("form");
-        form.setAttribute("id", this.options.formId);
-        form.setAttribute("action", this.options.formAction);
+        form.setAttribute("id", this.options.get("formId"));
+        form.setAttribute("action", this.options.get("formAction"));
+        form.setAttribute("method", "post");
+        form.setAttribute("enctype","multipart/form-data");
 
-        this.dropContainer.insertBefore(form, document.querySelectorAll(this.options.insertBeforSelector)[0]);  // Probably wont want to append here.
+        this.formContainer.appendChild(form);  // Probably wont want to append here.
+
         return form;
     }
 
@@ -160,9 +168,9 @@ class DragDropFileUpload {
 
         let fileInput = document.createElement("INPUT");
         fileInput.setAttribute("type", "file");
-        fileInput.setAttribute("name", "Attachments__c[]");
-        fileInput.setAttribute("id", "Attachments__c[]");
-        fileInput.setAttribute("multiple", "true");
+        fileInput.setAttribute("name", "attachments__c[]");
+        fileInput.setAttribute("id", "attachments__c[]");
+        fileInput.setAttribute("multiple", true);
         fileInput.classList.add("upload");
 
         this.uploadContainer.appendChild(fileInput);
@@ -194,10 +202,5 @@ class DragDropFileUpload {
         this.uploadContainer.prepend(statusContainer);
 
         return statusContainer;
-    }
-
-    getOptions() {
-
-        return this.options;
     }
 }

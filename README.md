@@ -2,31 +2,23 @@
 Drag and drop file uploader
 
 Requires:
-1.	Obviously a page
-2.	A form element that has an id that matches the id that is set in “dragDrop.js”, and an action pointing to a callback.
-3.	A link tag for the dragDrop.css before any relevant elements
-4.	A script tag for the dragDrop.js after any relevant elements
+1.  A link tag for the dragDrop.css
+2.  A script tag for the app.js
+3.	A script tag for the DragDropFileUpload.js
 
 
 To do:
-1. The dropzone should be highlighted when a file is dragged over it.
-2. Figure out why the files are not being uploaded.
-3. Figur3e out why the method on the request is "GET".  It should be "POST".
-4. After everything is working, push to main, and tag a version 1.0.
+1. I am sure there is more to do, but my list is wiped out.
     
 ### So far this library is dependant on this being in the page:  Gonna reduce that to no dependencies though.
 
 ```
 <link rel="stylesheet" type="text/css" href="<?php print module_path(); ?>/lib-drag-drop-upload/css/dragDrop.css" />
 
-<div id="container">
-    
-    <form id="upload-form" action="/test/drag/drop/upload">
+<div id="form-container"></div>
 
-    </form>
+<script src="<?php print module_path(); ?>/lib-drag-drop-upload/js/DragDropFileUpload.js"></script>
+<script src="<?php print module_path(); ?>/lib-drag-drop-upload/js/app.js"></script>
 
-</div>
-
-<script src="<?php print module_path(); ?>/lib-drag-drop-upload/js/dragDrop.js" />
 ```
 
