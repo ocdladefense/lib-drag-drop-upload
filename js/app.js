@@ -1,10 +1,11 @@
 
 // Settings and options
 let options = new Map([
-    ["includeFileDialog", true],
-    ["uploadOnDrop", true],
+    ["includeFileDialog", false],
+    ["uploadOnDrop", false],  // False will show the submit button on the form
+    ["useExistingForm", false],
     ["dropZoneSelector", "body"],
-    ["formId", "upload-form"],
+    ["formId", "existing-form"],
     ["formAction", "/test/drag/drop/upload"],
     ["formContainerId", "form-container"]
 ]);
