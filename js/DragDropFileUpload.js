@@ -39,10 +39,18 @@ class DragDropFileUpload {
     // Create and append all of the needed upload elements to the form.
     createUploadElements() {
 
-        this.form = document.getElementById(this.options.get("formId")) != null ? document.getElementById(this.options.get("formId")) : this.appendFormElement();
+        this.form = this.options.get("useExistingForm") ? document.getElementById(this.options.get("formId")) : this.appendFormElement();
         this.uploadContainer = this.appendUploadContainer();
         this.fileInput = this.appendFileInput();
-        this.submitButton = this.appendSubmitButton();
+
+        if(document.querySelectorAll("[type='submit']")[0] != null && this.options.get("useExistingForm")) {
+
+            this.submitButton = document.querySelectorAll("[type='submit']")[0];
+            
+        } else {
+
+            this.submitButton = this.appendSubmitButton();
+        }
     }
 
     // add the files to the data transfer, and update the interface.
@@ -88,7 +96,6 @@ class DragDropFileUpload {
     updateDataTransfer(e){
 
         let files = e.type == "drop" ? e.dataTransfer.files : e.target.files;
-        console.log(e);
 
         for(let i = 0; i <= files.length -1; i++){
 
