@@ -8,7 +8,7 @@ Requires:
 
 
 To do:
-1. I am sure there is more to do, but my list is wiped out.
+1. Figure out what happens if there is already a form on the page.
     
 ### So far this library is dependant on this being in the page:
 
