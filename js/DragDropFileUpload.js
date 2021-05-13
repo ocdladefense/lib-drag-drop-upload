@@ -130,6 +130,7 @@ class DragDropFileUpload {
 
         let ul = document.getElementById("filelist") != null ? document.getElementById("filelist") : document.createElement("ul");
         ul.setAttribute("id", "filelist");
+        ul.setAttribute("style", "list-style: none;");
 
         for(let i = 0; i <= filenames.length -1; i++){
 
