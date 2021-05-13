@@ -1,15 +1,13 @@
 
 // Settings and options
-let options = new Map([
-    ["includeFileDialog", false],
-    ["uploadOnDrop", false],  // False will show the submit button on the form
-    ["useExistingForm", false],
-    ["dropZoneSelector", "body"],
-    ["formId", "existing-form"],
-    ["formAction", "/test/drag/drop/upload"],
-    ["formContainerId", "form-container"]
-]);
-
+let options = new Map();
+options.set("includeFileDialog", false);
+options.set("uploadOnDrop", false);
+options.set("useExistingForm", false);
+options.set("dropZoneSelector", "body");
+options.set("formId", "existing-form");
+options.set("formAction", "/test/drag/drop/upload");
+options.set("formContainerId", "form-container");
 
 let dragDrop = new DragDropFileUpload(options);
 

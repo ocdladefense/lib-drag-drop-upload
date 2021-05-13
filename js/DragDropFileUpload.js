@@ -96,7 +96,6 @@ class DragDropFileUpload {
     updateDataTransfer(e){
 
         let files = e.type == "drop" ? e.dataTransfer.files : e.target.files;
-        console.log(e);
 
         for(let i = 0; i <= files.length -1; i++){
 
