@@ -7,5 +7,8 @@
             "name": "Trevor Uehlin",
             "email": "trevoruehlinx1@gmail.com"
         }
-    ]
+    ],
+    "require":{
+        "composer/installers":"~1.0"
+    }
 }
