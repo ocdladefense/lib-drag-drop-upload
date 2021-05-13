@@ -1,4 +1,5 @@
 
+// Settings and options
 let options = new Map([
     ["includeFileDialog", true],
     ["uploadOnDrop", true],

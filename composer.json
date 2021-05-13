@@ -1,5 +1,5 @@
 {
-    "name": "clickpdx/lib-drag-drop-upload",
+    "name": "ocdladefense/lib-drag-drop-upload",
     "description": "A drag and drop file uploader.",
     "type": "library",
     "authors": [
@@ -7,8 +7,5 @@
             "name": "Trevor Uehlin",
             "email": "trevoruehlinx1@gmail.com"
         }
-    ],
-    "require": {
-        "composer/installers":"~1.0"
-    }
+    ]
 }
