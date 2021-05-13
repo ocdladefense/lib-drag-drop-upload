@@ -1,6 +1,6 @@
 {
     "name": "clickpdx/lib-drag-drop-upload",
-    "description": "A drag and drop file uploader.  Probably...no, is the best file uploader in the world.",
+    "description": "A drag and drop file uploader.",
     "type": "library",
     "authors": [
         {

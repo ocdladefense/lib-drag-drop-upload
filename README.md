@@ -10,7 +10,7 @@ Requires:
 To do:
 1. I am sure there is more to do, but my list is wiped out.
     
-### So far this library is dependant on this being in the page:  Gonna reduce that to no dependencies though.
+### So far this library is dependant on this being in the page:
 
 ```
 <link rel="stylesheet" type="text/css" href="<?php print module_path(); ?>/lib-drag-drop-upload/css/dragDrop.css" />
