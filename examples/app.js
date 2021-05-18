@@ -8,7 +8,7 @@ options.set("dropZoneSelector", "body");            // The id of the element tha
 options.set("formId", "existing-form");             // The id of the form.  Either the Id of a pre-existing form, or the id that will be given to the form rendered by the js. 
 options.set("formAction", "/test/drag/drop/upload");// The action attribute that will be added to the form rendered by the js.  
 options.set("formContainerId", "form-container");   // The Id that you want set to the form container element.
-options.set("fileInputPosition", 8);                // Set the position of the file input within the form nodelist.
+options.set("appendToElementId", "student-image");  // Append the file input container to this element.
 
 let dragDrop = new DragDropFileUpload(options);
 
