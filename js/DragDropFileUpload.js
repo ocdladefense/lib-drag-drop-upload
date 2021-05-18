@@ -166,7 +166,9 @@ class DragDropFileUpload {
         container.classList.add("file-upload-container");
         container.setAttribute("style", "text-align:center;");
 
-        this.form.appendChild(container);  // Probably shouldnt append here.
+        let formElements = this.form.childNodes;
+        console.log(formElements);
+        this.form.insertBefore(container, formElements[this.options.get("fileInputPosition")]);
         
         return container;
     }
