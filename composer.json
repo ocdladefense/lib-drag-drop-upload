@@ -1,7 +1,7 @@
 {
     "name": "ocdladefense/lib-drag-drop-upload",
     "description": "A drag and drop file uploader.",
-    "type": "wordpress-theme",
+    "type": "library",
     "authors": [
         {
             "name": "Trevor Uehlin",
